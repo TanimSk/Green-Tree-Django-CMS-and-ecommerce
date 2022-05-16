@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>{% block title %}{% endblock title %}</title>
+  <style type="text/css" media="all">
+    * {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    #user {
+      float: right;
+    }
+
+    body {
+      background-color: white;
+      margin: 0;
+    }
+
+    .center {
+      margin: auto;
+      text-align: center;
+    }
+
+    #header {
+      background-color: #04AA6D;
+      width: 100%;
+      color: white;
+      height: 3rem;
+    }
+
+    #helper {
+      float: left;
+      margin: 1rem 0 .5rem .5rem;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- <h1>Built-In User Registeration / Authentication App</h1> -->
+
+  {% block content %} {% endblock content %}
+
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">{{ message }}</div>
+  {% endfor %}
+  {% endif %}
+</body>
+
+</html>

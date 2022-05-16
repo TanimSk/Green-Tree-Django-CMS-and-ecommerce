@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Home Page{% endblock title %}
+
+{% block content %}
+
+<div id="header">
+  <div id="helper">
+    <b>User</b>
+  </div>
+</div>
+
+<div class="center">
+  {% if user.is_authenticated %}
+  <h1>Welcome to User Section</h1>
+  <p>Your name: <b>{{user.first_name}} {{user.last_name}}</b></p>
+  <p>Your email: <b>{{user.email}}</b></p>
+  <br>
+  <hr style="width: 60%;">
+  <br>
+  <a href="{% url 'profile' user.id %}">Edit Profile</a>
+  <br><br>
+  <a href="{% url 'change_password' %}">Change Password</a>
+  <br><br>
+  <a href="{% url 'logout' %}">Logout</a>
+  {% else %}
+    <meta http-equiv="refresh" content="0; url={% url 'login' %}" />
+  {% endif %}
+</div>
+    
+{% endblock content %}

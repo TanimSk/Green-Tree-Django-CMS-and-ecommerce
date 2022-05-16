@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Success!{% endblock title %}
+
+{% block content %}
+
+<div id="header">
+    <div id="helper">
+        <b>Place Order</b>
+    </div>
+
+    <div id="user">
+        <a href="{% url 'user' %}">
+            <img src="https://cdn-icons-png.flaticon.com/512/64/64572.png" alt="User"
+                style="width: 2rem; margin: .5rem .5rem 0 0;">
+        </a>
+    </div>
+</div>
+
+<h1 style="margin-top: 5rem; font-size: 3rem; text-align: center;">
+    Success!
+</h1>
+
+
+<a href="{% url 'home' %}" style="text-align: center; display: block; font-size: 1.5rem;">
+    Home
+</a>
+
+{% endblock content %}

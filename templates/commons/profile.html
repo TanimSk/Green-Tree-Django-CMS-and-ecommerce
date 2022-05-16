@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile Page{% endblock title %}
+
+{% block content %}
+
+<div id="header">
+    <div id="helper">
+        <b>Profile Page</b>
+    </div>
+</div>
+
+<form method="post">
+    {% csrf_token %}
+<br>
+    <div class="center">
+        <h1>
+            Edit Profile
+        </h1>
+        <br>
+        Username:
+        {{ form.username }} <br> <br>
+        
+        First name:
+        {{ form.first_name }} <br> <br>
+    
+        Last name:
+        {{ form.last_name }} <br> <br>
+    
+        Email: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        {{ form.email }} <br> <br>
+        
+        <button type="submit">Update</button>
+        
+    </div>
+    <br><br>
+    <a href="{% url 'home' %}" style="margin-left: 5rem;">
+        Back
+    </a>
+</form>
+{% endblock content %}

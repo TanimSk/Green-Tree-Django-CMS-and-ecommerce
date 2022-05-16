@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block title %}Article{% endblock title %}
+
+{% block content %}
+
+<head>
+    <style>
+        .description {
+            width: 50%;
+            min-width: 20rem;
+            word-wrap: break-word;
+            min-height: 20rem;
+        }
+
+        .btn {
+            background-color: #04AA6D;
+            color: white;
+            border: none;
+            outline: none;
+            border-radius: 5px;
+            font-weight: 800;
+            font-size: 1rem;
+            padding: 6px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #00774b;
+        }
+
+        .cmnts {
+            width: 35rem;
+        }
+    </style>
+</head>
+
+<div id="header">
+    <div id="helper">
+        <b>Article</b>
+    </div>
+    <div id="user">
+        <a href="{% url 'user' %}">
+            <img src="https://cdn-icons-png.flaticon.com/512/64/64572.png" alt="User"
+                style="width: 2rem; margin: .5rem .5rem 0 0;">
+        </a>
+    </div>
+</div>
+
+<div class="post-cont">
+
+    <a href="{% url 'order_list'  id=content.id %}">
+        <button style="float: right; margin-top: 1.5rem; margin-right: 1rem;" class="btn">
+            Add to Cart
+        </button>
+    </a>
+
+    <h1 style="text-align: center; background-color: rgb(221, 221, 221); margin-top: 0%;">
+        {{ content.title }} <br>
+        <small style="margin-top: -1rem; font-weight: 100; font-size: 1rem;">
+            Vacancy: {{ content.vacancy }}
+        </small>
+    </h1>
+
+
+
+    <div style="float: right;">
+        <img src="{{ content.img.url }}"
+            onerror="this.onerror=null; this.src='https://www.publicdomainpictures.net/pictures/280000/velka/not-found-image-15383864787lu.jpg'"
+            alt="IMAGE" style="height: 18rem; margin: 2rem;">
+    </div>
+    <div class="description" style="margin: 5rem;">
+        {{ content.description }}
+    </div>
+</div>
+
+<hr style="width: 40rem;">
+<b class="center"
+    style="display: block;background-color: #04AA6D; width: 8rem; color: white; padding: 6px; margin-top: -1.6rem;">
+    Comments
+</b>
+<br>
+
+<form method="POST" action="{% url 'show_post' id=url %}" class="center">
+    <textarea name="cmnt" cols="30" rows="2" placeholder="Comment"></textarea>
+    <br>
+    {% csrf_token %}
+    <button style="margin-top: 10px;" class="btn" type="submit">
+        Comment
+    </button>
+</form>
+
+<div class="cmnts center">
+    {% for cmnt in comments %}
+    <hr>
+    <span style="text-align: left; display: block;">
+        {{ cmnt.comment }}
+    </span>
+    <br>
+    <b style="float: right;">
+        - {{ cmnt.name }}
+    </b>
+    <br>
+    {% endfor %}
+</div>
+
+<br><br>
+
+{% endblock content %}

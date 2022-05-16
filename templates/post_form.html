@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Article{% endblock title %}
+
+{% block content %}
+
+<head>
+    <style>
+
+        #cont {
+            margin: auto;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        #title {
+            padding: .5rem;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        #sub {
+            margin-top: 1.6rem;
+            background-color: #04AA6D;
+            color: white;
+            border: none;
+            outline: none;
+            border-radius: 10px;
+            padding: 6px;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        #sub:hover {
+            background-color: #00774b;
+        }
+    </style>
+</head>
+
+
+<div id="header">
+    <div id="helper">
+        <b>
+            Write Article
+        </b>
+    </div>
+</div>
+
+<div id="cont">
+    <form method="post" action="{% url 'create_post' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <label for="category"><b>
+            Category:
+        </b></label>
+
+        <b style="margin-left: 2.8rem;">
+            Vacancy:
+        </b>
+
+        <br>
+        
+        <select name="category">
+            <option value="Rose">Rose</option>
+            <option value="Tulip">Tulip</option>
+            <option value="Orchid">Orchid</option>
+            <option value="Sunflower">Sunflower<hr></option>
+            <option value="Apple">Apple</option>
+            <option value="Coconut">Coconut</option>
+            <option value="Orange">Orange</option>
+            <option value="Jackfruit">Jackfruit</option>
+            <option value="Jackfruit">Mango</option>
+            <option value="Lemon">Lemon</option>
+            <option value="Grape">Grape</option>
+            <option value="Tulsi">Tulsi</option>
+            <option value="Aloe Vera">Aloe Vera</option>
+            <option value="Neem">Neem</option>
+            <option value="Calendula">Calendula</option>
+        </select>
+
+        <input type="text" name="vacancy" style="width: 4rem; margin-left: 1.2rem;" placeholder="vacancy">  <!--Vacancy-->
+
+        <br> <br>
+
+        <input name="title" type="text" placeholder="Enter The Title Name" id="title">
+        <br>
+        <br>
+
+        <b>Attach an image here:</b>
+        <input type="file" name="img" accept="image/*">
+        <br>
+        <br>
+
+        <textarea name="description" placeholder="Description" cols="30" rows="10"></textarea>
+        <br>
+        <button id="sub" type="submit">
+            POST
+        </button>
+    </form>
+    <br><br>
+</div>
+
+{% endblock content %}

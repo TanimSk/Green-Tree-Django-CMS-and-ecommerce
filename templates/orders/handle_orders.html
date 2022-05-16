@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block title %}My Order list{% endblock title %}
+
+{% block content %}
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 5px 10px 5px 10px;
+        }
+    </style>
+</head>
+
+
+<div id="header">
+    <div id="helper">
+        <b>My Order List</b>
+    </div>
+    <div id="user">
+        <a href="{% url 'user' %}">
+            <img src="https://cdn-icons-png.flaticon.com/512/64/64572.png" alt="User"
+                style="width: 2rem; margin: .5rem .5rem 0 0;">
+        </a>
+    </div>
+</div>
+
+<br>
+
+<h1 class="center">
+    Placed Orders
+</h1>
+
+<br>
+
+<p class="center">
+    <a href="{% url 'admin:index' %}">
+        More options
+    </a>
+</p>
+
+<br><br><br>
+
+<table class="center">
+    <tr>
+        <th>name</th>
+        <th>phone no.</th>
+        <th>address</th>
+        <th>Products</th>
+    </tr>
+    {% for i in contents %}
+    <tr>
+        <td>{{i.name}}</td>
+        <td>{{i.phone_no}}</td>
+        <td>{{i.address}}</td>
+        <td>{{i.products}}</td>
+        <td>
+            <form action="{% url 'handle_orders' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" name="id" value="{{i.id}}">
+                    Dispatch
+                    <i class="fa-solid fa-truck"></i>
+                </button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+
+    {% if not contents %}
+        <tr>
+            <td colspan="4">No Orders Have Been Placed Yet</td>
+        </tr>
+    {% endif %}
+
+</table>
+
+
+{% endblock content %}
